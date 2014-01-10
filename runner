@@ -1,0 +1,73 @@
+#!/usr/bin/python -tt
+### Justin Brink 2013,dec
+### Import modules for this script
+import sys
+import os
+import subprocess
+import shutil
+
+### declare my home dir by importing globalvariable
+dumpdir = '/Users/justinbrink/Desktop/tmp' 
+dsrvr = '/home/inferno/Downloads'
+
+### Check to see if all files from the download server if no .part files exist if so stop the process
+if os.system("scp inferno@192.168.1.50:/home/inferno/Downloads/*.part justinbrink@192.168.1.111:/Users/justinbrink/Desktop/tmp/"):
+    pass
+else:
+    sys.exit("Files are still downloading on the download server")
+
+print "Download Check Complete"
+
+### Copy all files locally to clean
+os.system("scp inferno@192.168.1.50:/home/inferno/Downloads/*.rar justinbrink@192.168.1.111:/Users/justinbrink/Desktop/tmp/")
+  
+print "copy complete"
+
+### Clean Up files
+
+os.chdir("/Users/justinbrink/Desktop/tmp/")
+path = os.getcwd()
+filenames = os.listdir(path)
+for filename in filenames:
+    os.rename(os.path.join(path, filename), os.path.join(path, filename.replace("\W|_", '')))
+    os.rename(os.path.join(path, filename), os.path.join(path, filename.replace(" ", '')))
+#    os.rename(os.path.join(path, filename), os.path.join(path, filename.replace('\(', '')))
+#    os.rename(os.path.join(path, filename), os.path.join(path, filename.replace('\)', '')))
+#    os.rename(os.path.join(path, filename), os.path.join(path, filename.replace("www.NewAlbumReleases.net", '')))
+#    os.rename(os.path.join(path, filename), os.path.join(path, filename.replace("TechnicalDeathMetal.org", '')))
+
+print "Rename Complete"
+
+### Loop over the desired directory of files
+
+indir = '/Users/justinbrink/Desktop/tmp/'
+for root, dirs, filenames in os.walk(indir):
+    for f in filenames:
+        mixcmd = "/usr/bin/unar -f -o /Users/justinbrink/Desktop/tmp/ " + root + f  
+        print mixcmd
+        subprocess.call(mixcmd, shell=True)
+
+print "unrar'n complete"
+
+### Recursively remove all .html and .jpg files from all directories
+
+
+### Check AGAIN to see if all files from the download server if no .part files exist if so stop the process
+if os.system("scp inferno@192.168.1.50:/home/inferno/Downloads/*.part justinbrink@192.168.1.111:/Users/justinbrink/Desktop/tmp/"):
+    pass
+else:
+    sys.exit("Files are still downloading on the download server")
+
+print "Still nothing downloading"
+
+### remove all download files from the Download server
+#os.system("ssh inferno@192.168.1.50 'cd /home/inferno/Downloads/ && rm -rf *.rar'")
+
+### Clean up files locally after work is done
+# os.system("cd /Users/justinbrink/Desktop/tmp/ && rm -rf *.rar && rm *.part")
+
+
+#if __name__ == '__main__':
+#  main()
+
+
