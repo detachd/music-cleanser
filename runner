@@ -22,7 +22,7 @@ print "Download Check Complete"
 os.system("scp inferno@192.168.1.50:/home/inferno/Downloads/*.rar justinbrink@192.168.1.111:/Users/justinbrink/Desktop/tmp/")
 os.system("scp inferno@192.168.1.50:/home/inferno/Downloads/*.zip justinbrink@192.168.1.111:/Users/justinbrink/Desktop/tmp/")
 
-print "copyng compressed files complete"
+print "Copying compressed files task complete"
 
 ### Clean Up files
 
@@ -37,7 +37,7 @@ for filename in filenames:
 #    os.rename(os.path.join(path, filename), os.path.join(path, filename.replace("www.NewAlbumReleases.net", '')))
 #    os.rename(os.path.join(path, filename), os.path.join(path, filename.replace("TechnicalDeathMetal.org", '')))
 
-print "Rename Complete"
+print "Renaming Task Complete"
 
 ### Loop over the desired directory of files
 
@@ -59,10 +59,10 @@ if os.system("scp inferno@192.168.1.50:/home/inferno/Downloads/*.part justinbrin
 else:
     sys.exit("Files are still downloading on the download server")
 
-print "Still nothing downloading"
+print "Still Nothing downloading, Move on"
 
 ### remove all download files from the Download server
-#os.system("ssh inferno@192.168.1.50 'cd /home/inferno/Downloads/ && rm -rf *.rar'")
+os.system("ssh inferno@192.168.1.50 'cd /home/inferno/Downloads/ && rm -rf *.rar && rm -rf .zip'")
 
 ### Clean up files locally after work is done
 # os.system("cd /Users/justinbrink/Desktop/tmp/ && rm -rf *.rar && rm *.part")
