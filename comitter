@@ -8,4 +8,3 @@ git add .
 git commit -m "$COMMENTS"
 git push
 
-print "Commit Done"
