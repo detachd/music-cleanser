@@ -22,7 +22,7 @@ print "Download Check Complete"
 os.system("scp inferno@192.168.1.50:/home/inferno/Downloads/*.rar justinbrink@192.168.1.111:/Users/justinbrink/Desktop/tmp/")
 os.system("scp inferno@192.168.1.50:/home/inferno/Downloads/*.zip justinbrink@192.168.1.111:/Users/justinbrink/Desktop/tmp/")
 
-print "copy complete"
+print "copyng compressed files complete"
 
 ### Clean Up files
 
