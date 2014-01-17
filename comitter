@@ -6,5 +6,6 @@ echo "You Entered the value: $COMMENTS"
 
 git add .
 git commit -m "$COMMENTS"
+#git commit -am "$COMMENTS"
 git push
 
