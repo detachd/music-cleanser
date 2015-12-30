@@ -1,5 +1,4 @@
 #!/usr/bin/python -tt
-### Justin Brink 2013,dec
 ### Import modules for this script
 import sys
 import os
